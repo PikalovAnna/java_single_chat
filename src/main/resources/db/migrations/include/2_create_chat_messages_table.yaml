@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2_create_chat_messages_table
+      author: pikalova.a
+      tagDatabase: Version 1
+      preConditions:
+        onFail: 'MARK_RAN'
+        not:
+          tableExists:
+            schemaName: public
+            tableName: chat_messages
+      changes:
+        - createTable:
+            tableName: chat_messages
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: text
+                  type: CHARACTER VARYING
+              - column:
+                  name: author
+                  type: BIGINT
+                  constraints:
+                    foreignKeyName: fk_chat_message_user_id
+                    references: users(id)

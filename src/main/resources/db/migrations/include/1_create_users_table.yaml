@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1_create_users_table
+      author: pikalova.a
+      tagDatabase: Version 1
+      preConditions:
+        onFail: 'MARK_RAN'
+        not:
+          tableExists:
+            schemaName: public
+            tableName: users
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: CHARACTER VARYING

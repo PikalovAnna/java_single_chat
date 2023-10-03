@@ -1,0 +1,13 @@
+server.port: 8080
+
+spring:
+  application:
+    name: java_single_chat
+  datasource:
+    url: jdbc:postgresql://localhost:5432/java_single_chat
+    username: postgres
+    password: rxBkxM44EQ4MFWr
+  liquibase:
+    change-log: classpath:/db/migrations/changelog.yaml
+    enabled: true
+    default-schema: public
