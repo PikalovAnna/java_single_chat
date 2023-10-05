@@ -35,13 +35,13 @@ After creating db fill in credentials in application.yaml
 Fill in your username and press Start Chatting
 
 
-![signup]([https://github.com/](https://github.com/PikalovAnna/java_single_chat/blob/main/src/main/resources/static/log_in.png)
+![signup]([https://github.com/PikalovAnna/java_single_chat/blob/main/src/main/resources/static/log_in.png])
 
 
 then fill in message and press Send
 
 
-![user]([https://github.com/](https://github.com/PikalovAnna/java_single_chat/blob/main/src/main/resources/static/chat.png)
+![user]([https://github.com/PikalovAnna/java_single_chat/blob/main/src/main/resources/static/chat.png])
 
 ## About Task
 
