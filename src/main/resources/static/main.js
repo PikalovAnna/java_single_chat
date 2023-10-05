@@ -20,6 +20,7 @@ function connect(event) {
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, onConnected, onError);
+
     }
     event.preventDefault();
 }
@@ -52,11 +53,11 @@ function sendMessage(event) {
 }
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    if (message instanceof Array && message[0].type === 'JOIN') {
-        var curMessage = message[0];
-        message.reverse();
-        for (var i = 0; i < message.length; i++) {
-            var messageInLoop = message[i];
+    if (message.messages && message.messages[0].type === 'JOIN') {
+        var curMessage = message.messages[0];
+        message.messages.reverse();
+        for (var i = 0; i < message.messages.length; i++) {
+            var messageInLoop = message.messages[i];
             var messageElement1 = document.createElement('li');
             if (messageInLoop.type === 'JOIN') {
                 messageElement1.classList.add('event-message');
@@ -76,6 +77,7 @@ function onMessageReceived(payload) {
                  usernameElement.appendChild(usernameText);
                  messageElement1.appendChild(usernameElement);
             }
+
             var textElement = document.createElement('p');
             var messageText = document.createTextNode(messageInLoop.content);
             textElement.appendChild(messageText);
@@ -83,23 +85,13 @@ function onMessageReceived(payload) {
             messageArea.appendChild(messageElement1);
             messageArea.scrollTop = messageArea.scrollHeight;
         }
-
-        var userElement = document.createElement('li');
-        userElement.classList.add('user-online');
-        userElement.id = curMessage.sender;
-        var usernameElement = document.createElement('span');
-        var usernameText = document.createTextNode(curMessage.sender);
-        usernameElement.appendChild(usernameText);
-        userElement.appendChild(usernameElement);
-        usersArea.appendChild(userElement);
-        usersArea.scrollTop = usersArea.scrollHeight;
+        updateUserOnline(message.users)
     } else if (message.type === 'LEAVE') {
         var messageElement = document.createElement('li');
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
 
         document.getElementById(message.sender).remove()
-
         var textElement = document.createElement('p');
             var messageText = document.createTextNode(message.content);
             textElement.appendChild(messageText);
@@ -125,6 +117,22 @@ function onMessageReceived(payload) {
             messageElement.appendChild(textElement);
             messageArea.appendChild(messageElement);
             messageArea.scrollTop = messageArea.scrollHeight;
+    }
+}
+
+function updateUserOnline(users){
+    for (var i = 0; i < users.length; i++) {
+        if (!document.getElementById(users[i])){
+            var userElement = document.createElement('li');
+            userElement.classList.add('user-online');
+            userElement.id = users[i];
+            var usernameElement = document.createElement('span');
+            var usernameText = document.createTextNode(users[i]);
+            usernameElement.appendChild(usernameText);
+            userElement.appendChild(usernameElement);
+            usersArea.appendChild(userElement);
+            usersArea.scrollTop = usersArea.scrollHeight;
+        }
     }
 }
 

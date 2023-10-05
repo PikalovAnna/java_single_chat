@@ -19,6 +19,7 @@ public class WebSocketEventListener {
     @Autowired
     private SimpMessageSendingOperations messagingTemplate;
     private final ChatMessagesService chatMessagesService;
+    private final UserService userService;
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
@@ -35,6 +36,7 @@ public class WebSocketEventListener {
             chatMessage.setSender(username);
             chatMessage.setType(ChatMessageWrapper.MessageType.LEAVE);
             chatMessagesService.save(chatMessage);
+            userService.delUser(username);
             messagingTemplate.convertAndSend("/topic/public", chatMessage);
         }
     }
