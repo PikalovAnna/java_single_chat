@@ -2,6 +2,7 @@ package org.pikalovanna.java_single_chat.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.pikalovanna.java_single_chat.dto.ChatMessageWrapper;
 
 import javax.persistence.*;
 
@@ -18,9 +19,12 @@ public class ChatMessage {
     Long id;
 
     @Column(name = "text")
-    String text;
+    String content;
 
-    @OneToOne
-    @JoinColumn(name = "author")
-    User author;
+    @Column(name = "author")
+    String sender;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    ChatMessageWrapper.MessageType type;
 }

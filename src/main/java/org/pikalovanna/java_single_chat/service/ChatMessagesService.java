@@ -1,6 +1,7 @@
 package org.pikalovanna.java_single_chat.service;
 
 import lombok.RequiredArgsConstructor;
+import org.pikalovanna.java_single_chat.dto.ChatMessageWrapper;
 import org.pikalovanna.java_single_chat.dto.Filter;
 import org.pikalovanna.java_single_chat.entity.ChatMessage;
 import org.pikalovanna.java_single_chat.repository.ChatMessageRepository;
@@ -18,17 +19,25 @@ public class ChatMessagesService {
     /**
      * Возвращает постранично сообщения из чата
      *
-     * @param filter фильтр для пролистывания (номер страницы, кол-во записей на странице)
+     * @param page фильтр для пролистывания (номер страницы)
+     * @param size фильтр для пролистывания (кол-во записей на странице)
      * @return страницу с сообщениями
      */
-    public Page<ChatMessage> getPagedMessages(Filter filter){
+    public Page<ChatMessageWrapper> getPagedMessages(int page, int size){
         return repository.findAll(
                 PageRequest.of(
-                        filter.getPage(),
-                        filter.getSize(),
+                        page,
+                        size,
                         Sort.by("id").descending()
                 )
-        );
+        ).map(ChatMessageWrapper::new);
     }
 
+    public ChatMessage save(ChatMessageWrapper chatMessageWrapper){
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setSender(chatMessageWrapper.getSender());
+        chatMessage.setContent(chatMessageWrapper.getContent());
+        chatMessage.setType(chatMessageWrapper.getType());
+        return repository.save(chatMessage);
+    }
 }

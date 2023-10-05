@@ -25,7 +25,7 @@ databaseChangeLog:
                   type: CHARACTER VARYING
               - column:
                   name: author
-                  type: BIGINT
-                  constraints:
-                    foreignKeyName: fk_chat_message_user_id
-                    references: users(id)
+                  type: CHARACTER VARYING
+              - column:
+                  name: type
+                  type: CHARACTER VARYING
