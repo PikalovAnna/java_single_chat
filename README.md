@@ -11,6 +11,7 @@
 * Lombok;
 * Liquibase;
 * JDBC;
+* JStomp
 
 
 
