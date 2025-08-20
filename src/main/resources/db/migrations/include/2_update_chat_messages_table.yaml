@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2_update_chat_messages_table
+      author: pikalova.a
+      tagDatabase: Version 2
+      preConditions:
+        onFail: 'MARK_RAN'
+        not:
+          columnExists:
+            schemaName: public
+            tableName: chat_messages
+            columnName: created_at
+      changes:
+        - addColumn:
+            tableName: chat_messages
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP

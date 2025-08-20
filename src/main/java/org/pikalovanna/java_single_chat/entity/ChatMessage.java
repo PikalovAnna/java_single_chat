@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.pikalovanna.java_single_chat.dto.ChatMessageWrapper;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,4 +28,12 @@ public class ChatMessage {
     @Column
     @Enumerated(EnumType.STRING)
     ChatMessageWrapper.MessageType type;
+
+    @Column(name = "created_at")
+    LocalDateTime timestamp;
+
+    @PrePersist
+    protected void onCreate() {
+        timestamp = LocalDateTime.now();
+    }
 }

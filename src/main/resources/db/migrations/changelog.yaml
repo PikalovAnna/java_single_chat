@@ -6,3 +6,6 @@ databaseChangeLog:
   - include:
       file: include/1_create_chat_messages_table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: include/2_update_chat_messages_table.yaml
+      relativeToChangelogFile: true

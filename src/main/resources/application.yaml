@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/java_single_chat
     username: postgres
-    password: rxBkxM44EQ4MFWr
+    password: postgres
   liquibase:
     change-log: classpath:/db/migrations/changelog.yaml
     enabled: true
