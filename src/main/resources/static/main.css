@@ -348,19 +348,37 @@ button.danger:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #6c757d;
+}
+
+/* Specific styles for new icon classes */
+.action-btn .fa-pencil-alt,
+.action-btn .fa-trash-alt {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.action-btn:hover .fa-pencil-alt {
+    color: #28a745;
+}
+
+.action-btn:hover .fa-trash-alt {
+    color: #dc3545;
 }
 
 /* Fallback for Font Awesome icons */
 .action-btn.edit-btn::before {
-    content: "✏";
+    content: "✏️";
     font-size: 14px;
     display: none;
+    color: #6c757d;
 }
 
 .action-btn.delete-btn::before {
-    content: "🗑";
+    content: "🗑️";
     font-size: 14px;
     display: none;
+    color: #6c757d;
 }
 
 /* Show fallback if Font Awesome is not loaded */
@@ -370,6 +388,7 @@ button.danger:hover {
     justify-content: center;
     width: 100%;
     height: 100%;
+    color: #6c757d;
 }
 
 .action-btn.delete-btn:not(:has(i))::before {
@@ -378,6 +397,7 @@ button.danger:hover {
     justify-content: center;
     width: 100%;
     height: 100%;
+    color: #6c757d;
 }
 
 .action-btn:hover {
@@ -388,16 +408,28 @@ button.danger:hover {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
+.action-btn:hover i {
+    color: #667eea;
+}
+
 .action-btn.edit-btn:hover {
     color: #28a745;
     border-color: #28a745;
     background: #f8fff9;
 }
 
+.action-btn.edit-btn:hover i {
+    color: #28a745;
+}
+
 .action-btn.delete-btn:hover {
     color: #dc3545;
     border-color: #dc3545;
     background: #fff8f8;
+}
+
+.action-btn.delete-btn:hover i {
+    color: #dc3545;
 }
 
 /* Edited message indicator */
@@ -753,6 +785,30 @@ button.danger:hover {
         height: 32px;
         padding: 6px;
     }
+    .action-btn i {
+        font-size: 16px;
+        color: #6c757d;
+    }
+    .action-btn .fa-pencil-alt,
+    .action-btn .fa-trash-alt {
+        font-size: 16px;
+        color: #6c757d;
+    }
+    .action-btn:hover i {
+        color: #6c757d;
+    }
+    .action-btn:hover .fa-pencil-alt {
+        color: #28a745;
+    }
+    .action-btn:hover .fa-trash-alt {
+        color: #dc3545;
+    }
+    .action-btn.edit-btn:hover i {
+        color: #28a745;
+    }
+    .action-btn.delete-btn:hover i {
+        color: #dc3545;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -809,6 +865,27 @@ button.danger:hover {
     }
     .action-btn i {
         font-size: 16px;
+        color: #6c757d;
+    }
+    .action-btn .fa-pencil-alt,
+    .action-btn .fa-trash-alt {
+        font-size: 16px;
+        color: #6c757d;
+    }
+    .action-btn:hover i {
+        color: #6c757d;
+    }
+    .action-btn:hover .fa-pencil-alt {
+        color: #28a745;
+    }
+    .action-btn:hover .fa-trash-alt {
+        color: #dc3545;
+    }
+    .action-btn.edit-btn:hover i {
+        color: #28a745;
+    }
+    .action-btn.delete-btn:hover i {
+        color: #dc3545;
     }
     .modal-footer {
         flex-direction: column;

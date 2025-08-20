@@ -178,7 +178,7 @@ function addMessageActions(messageElement, messageData) {
     
     var editBtn = document.createElement('button');
     editBtn.className = 'action-btn edit-btn';
-    editBtn.innerHTML = '<i class="fas fa-edit"></i>';
+    editBtn.innerHTML = '<i class="fas fa-pencil-alt"></i>';
     editBtn.title = 'Edit message';
     editBtn.onclick = function() {
         openEditModal(messageData);
@@ -186,7 +186,7 @@ function addMessageActions(messageElement, messageData) {
     
     var deleteBtn = document.createElement('button');
     deleteBtn.className = 'action-btn delete-btn';
-    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
     deleteBtn.title = 'Delete message';
     deleteBtn.onclick = function() {
         openDeleteModal(messageData);
